@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -94,8 +91,26 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+//        loop through allJobs
+//          loop through keys and values
+//        if one contains the keyword, add to jobs
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> jobListing : allJobs) {
+            for (Map.Entry<String, String> jobField : jobListing.entrySet()) {
+                if (jobField.getKey().contains(value) || jobField.getValue().contains(value)) {
+                    if (!jobs.contains(jobListing)) {
+                        jobs.add(jobListing);
+                    }
+//                    if jobListing (HashMap) isn't already in jobs (ArrayList)
+//                    add jobListing to jobs
+                }
+            }
+        }
+
+        return jobs;
+
         // TODO - implement this method
-        return null;
     }
 
     /**
