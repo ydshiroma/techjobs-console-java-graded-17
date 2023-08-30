@@ -72,7 +72,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value)) {
                 jobs.add(row);
             }
         }
@@ -91,6 +91,8 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+//        TODO: lowercase search
+
 //        loop through allJobs
 //          loop through keys and values
 //        if one contains the keyword, add to jobs
@@ -98,7 +100,7 @@ public class JobData {
 
         for (HashMap<String, String> jobListing : allJobs) {
             for (Map.Entry<String, String> jobField : jobListing.entrySet()) {
-                if (jobField.getKey().contains(value) || jobField.getValue().contains(value)) {
+                if (jobField.getKey().toLowerCase().contains(value) || jobField.getValue().toLowerCase().contains(value)) {
                     if (!jobs.contains(jobListing)) {
                         jobs.add(jobListing);
                     }
