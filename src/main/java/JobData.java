@@ -39,6 +39,7 @@ public class JobData {
             }
         }
 
+        Collections.sort(values);
         return values;
     }
 
@@ -47,7 +48,9 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> allJobsCopy = new ArrayList<>(allJobs);
+
+        return allJobsCopy;
     }
 
     /**
@@ -76,7 +79,6 @@ public class JobData {
                 jobs.add(row);
             }
         }
-
         return jobs;
     }
 
@@ -91,11 +93,6 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-//        TODO: lowercase search
-
-//        loop through allJobs
-//          loop through keys and values
-//        if one contains the keyword, add to jobs
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> jobListing : allJobs) {
@@ -104,15 +101,12 @@ public class JobData {
                     if (!jobs.contains(jobListing)) {
                         jobs.add(jobListing);
                     }
-//                    if jobListing (HashMap) isn't already in jobs (ArrayList)
-//                    add jobListing to jobs
                 }
             }
         }
 
         return jobs;
 
-        // TODO - implement this method
     }
 
     /**
